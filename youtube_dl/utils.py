@@ -3804,7 +3804,8 @@ def url_basename(url):
 
 
 def base_url(url):
-    return re.match(r'https?://[^?#]+/', url).group()
+    url = update_url(url, params=None, query=None, fragment=None)
+    return re.sub(r'/[^/]+$', '/', url)
 
 
 def urljoin(base, path):
